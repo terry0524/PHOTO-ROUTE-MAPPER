@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4efe4;
+  --foreground: #1f2937;
+  --surface: rgba(255, 251, 245, 0.92);
+  --surface-strong: #fffdf8;
+  --border: rgba(115, 85, 46, 0.18);
+  --accent: #b65a2a;
+  --accent-strong: #8d3f18;
+  --accent-soft: rgba(182, 90, 42, 0.12);
+  --muted: #6b7280;
+  --success: #0f766e;
+  --warning: #a16207;
+  --danger: #b91c1c;
+  --sidebar-width: 24rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(182, 90, 42, 0.15), transparent 28%),
+    linear-gradient(135deg, #efe7d7 0%, #f6f2eb 50%, #ece3d2 100%);
+  color: var(--foreground);
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+  min-width: 240px;
+  padding: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.25);
+}
+
+.leaflet-popup-content {
+  width: 240px !important;
+  min-width: 240px;
+  margin: 0;
+}
+
+.leaflet-container {
+  z-index: 0;
+}
+
+.maplibregl-canvas-container,
+.maplibregl-canvas,
+.leaflet-gl-layer {
+  z-index: 0 !important;
+}
+
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-popup,
+.maplibregl-ctrl-container {
+  z-index: 10;
+}
+
+
+.leaflet-popup-close-button {
+  font-size: 1.1rem;
+  color: #1f2937;
+  right: 0.5rem;
+  top: 0.35rem;
+}
+
+.photo-marker-wrapper {
+  background: transparent;
+  border: 0;
+}
+
+.photo-marker {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid #fff;
+  background: #b65a2a;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.22);
+}
+
+.photo-marker::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #ffedd5;
+}
+
+.photo-marker-start {
+  background: #047857;
+}
+
+.photo-marker-start::after {
+  background: #d1fae5;
+}
+
+.photo-marker-end {
+  background: #be123c;
+}
+
+.photo-marker-end::after {
+  background: #ffe4e6;
+}
+
+.photo-marker-picker {
+  background: #b65a2a;
+}
