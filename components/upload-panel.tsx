@@ -138,9 +138,9 @@ export function UploadPanel({
 
   return (
     <>
-      <div className="flex flex-col items-start gap-3 xl:items-end">
-        <div className="flex w-full max-w-md flex-col gap-2 xl:items-end">
-          <div className="flex w-full flex-col gap-2 sm:flex-row xl:justify-end">
+      <div className="flex w-full max-w-xl flex-col gap-3 lg:items-end">
+        <div className="shell-panel w-full rounded-[1.3rem] p-3">
+          <div className="flex flex-col gap-2 md:flex-row">
             <select
               value={tripMode === "existing" ? selectedTripId ?? "" : CREATE_NEW_TRIP}
               onChange={(event) => {
@@ -153,7 +153,7 @@ export function UploadPanel({
                 setTripMode("existing");
                 onSelectedTripChange(event.target.value || null);
               }}
-              className="w-full rounded-2xl border border-[color:var(--border)] bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[color:var(--accent)] xl:w-[260px]"
+              className="min-h-11 w-full rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface-strong)] px-4 text-sm text-slate-700 outline-none transition focus:border-[color:var(--accent)] md:flex-1"
             >
               <option value={CREATE_NEW_TRIP}>Create new trip</option>
               {trips.map((trip) => (
@@ -168,7 +168,7 @@ export function UploadPanel({
                 setTripMode("new");
                 onSelectedTripChange(null);
               }}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-[color:var(--border)] bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface-strong)] px-4 text-sm font-medium text-slate-700 transition hover:bg-white"
             >
               <PlusCircle className="size-4" />
               New trip
@@ -180,8 +180,8 @@ export function UploadPanel({
               type="text"
               value={newTripName}
               onChange={(event) => setNewTripName(event.target.value)}
-              placeholder="Trip name (e.g. Japan Winter 2025)"
-              className="w-full rounded-2xl border border-[color:var(--border)] bg-white px-4 py-3 text-sm text-slate-700 outline-none transition focus:border-[color:var(--accent)] xl:w-[360px]"
+              placeholder="Trip name"
+              className="mt-2 min-h-11 w-full rounded-[1rem] border border-[color:var(--border)] bg-[color:var(--surface-strong)] px-4 text-sm text-slate-700 outline-none transition focus:border-[color:var(--accent)]"
             />
           ) : null}
         </div>
@@ -198,7 +198,7 @@ export function UploadPanel({
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={isBusy || isParsing}
-          className="inline-flex items-center gap-2 rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[color:var(--accent-strong)] disabled:cursor-wait disabled:opacity-60"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[color:var(--accent)] px-6 text-sm font-semibold text-white transition hover:bg-[color:var(--accent-strong)] disabled:cursor-wait disabled:opacity-60"
         >
           {isBusy || isParsing ? (
             <LoaderCircle className="size-4 animate-spin" />
@@ -207,9 +207,9 @@ export function UploadPanel({
           )}
           {isParsing ? "Reading EXIF..." : "Upload photos"}
         </button>
-        <div className="flex items-center gap-2 text-xs text-slate-500">
+        <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
           <Camera className="size-3.5" />
-          Upload into a selected trip or create a new trip first.
+          Local-only storage per browser
         </div>
         {error ? <p className="max-w-sm text-sm text-[color:var(--danger)]">{error}</p> : null}
       </div>

@@ -37,7 +37,7 @@ export function MapPopupCard({ photo, onSaveMemo }: MapPopupCardProps) {
   }
 
   return (
-    <div className="w-[240px] bg-white">
+    <div className="w-[240px] bg-[color:var(--surface-strong)]">
       <img src={photo.thumbnail_url} alt={photo.file_name} className="h-28 w-full object-cover" />
       <div className="space-y-2.5 p-3">
         <div className="flex items-center justify-between gap-3">
@@ -77,7 +77,7 @@ export function MapPopupCard({ photo, onSaveMemo }: MapPopupCardProps) {
           type="button"
           onClick={handleSave}
           disabled={isPending}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-[13px] font-semibold text-white transition hover:bg-slate-800 disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[color:var(--foreground)] px-4 py-2 text-[13px] font-semibold text-white transition hover:opacity-92 disabled:opacity-60"
         >
           {isPending ? <LoaderCircle className="size-4 animate-spin" /> : <Save className="size-4" />}
           Save memo

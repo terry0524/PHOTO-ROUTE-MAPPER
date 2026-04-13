@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4efe4;
-  --foreground: #1f2937;
-  --surface: rgba(255, 251, 245, 0.92);
+  --background: #f6f2ea;
+  --foreground: #18212b;
+  --surface: rgba(255, 255, 255, 0.76);
   --surface-strong: #fffdf8;
-  --border: rgba(115, 85, 46, 0.18);
-  --accent: #b65a2a;
-  --accent-strong: #8d3f18;
-  --accent-soft: rgba(182, 90, 42, 0.12);
-  --muted: #6b7280;
-  --success: #0f766e;
+  --border: rgba(24, 33, 43, 0.08);
+  --accent: #c46234;
+  --accent-strong: #9b4822;
+  --accent-soft: rgba(196, 98, 52, 0.1);
+  --muted: #667382;
+  --success: #1f6b5c;
   --warning: #a16207;
-  --danger: #b91c1c;
-  --sidebar-width: 24rem;
+  --danger: #b63c4c;
+  --sidebar-width: 22rem;
 }
 
 * {
@@ -25,28 +25,37 @@ body {
   margin: 0;
   min-height: 100%;
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 32%),
-    radial-gradient(circle at bottom right, rgba(182, 90, 42, 0.15), transparent 28%),
-    linear-gradient(135deg, #efe7d7 0%, #f6f2eb 50%, #ece3d2 100%);
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.7), transparent 26%),
+    linear-gradient(180deg, #f7f3eb 0%, #f3ede2 100%);
   color: var(--foreground);
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+}
+
+h1,
+h2,
+h3,
+[data-display="true"] {
+  font-family: var(--font-display), serif;
+  letter-spacing: -0.02em;
 }
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
 }
 
 .leaflet-popup-content-wrapper {
   min-width: 240px;
   padding: 0;
-  border-radius: 1rem;
+  border: 1px solid rgba(24, 33, 43, 0.08);
+  border-radius: 1.2rem;
   overflow: hidden;
-  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.25);
+  box-shadow: 0 16px 48px rgba(24, 33, 43, 0.14);
 }
 
 .leaflet-popup-content {
@@ -74,9 +83,8 @@ textarea {
   z-index: 10;
 }
 
-
 .leaflet-popup-close-button {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #1f2937;
   right: 0.5rem;
   top: 0.35rem;
@@ -95,21 +103,21 @@ textarea {
   justify-content: center;
   border-radius: 9999px;
   border: 2px solid #fff;
-  background: #b65a2a;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.22);
+  background: #c46234;
+  box-shadow: 0 8px 18px rgba(24, 33, 43, 0.16);
 }
 
 .photo-marker::after {
   content: "";
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 9999px;
   background: #ffedd5;
 }
 
 .photo-marker-start {
-  background: #047857;
+  background: #1f6b5c;
 }
 
 .photo-marker-start::after {
@@ -117,7 +125,7 @@ textarea {
 }
 
 .photo-marker-end {
-  background: #be123c;
+  background: #b4415f;
 }
 
 .photo-marker-end::after {
@@ -125,5 +133,20 @@ textarea {
 }
 
 .photo-marker-picker {
-  background: #b65a2a;
+  background: #c46234;
+}
+
+.shell-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 253, 248, 0.96));
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 42px rgba(24, 33, 43, 0.06);
+  backdrop-filter: blur(14px);
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
 }

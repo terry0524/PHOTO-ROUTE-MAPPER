@@ -88,15 +88,15 @@ export function PhotoRouteMapper({ initialPhotos }: { initialPhotos: PhotoRecord
   async function handleDeleteTrip(tripId: string) {
     const trip = trips.find((item) => item.id === tripId);
 
-    if (trip === undefined) {
+    if (!trip) {
       return;
     }
 
     const shouldDelete = window.confirm(
-      `Delete \"${trip.name}\" and all photos saved inside it? This only removes local IndexedDB data on this browser.`,
+      `Delete "${trip.name}" and all photos saved inside it? This only removes local IndexedDB data on this browser.`,
     );
 
-    if (shouldDelete === false) {
+    if (!shouldDelete) {
       return;
     }
 
@@ -122,48 +122,48 @@ export function PhotoRouteMapper({ initialPhotos }: { initialPhotos: PhotoRecord
   }
 
   return (
-    <main className="flex min-h-screen flex-col">
-      <div className="border-b border-[color:var(--border)] bg-[color:var(--surface)] px-6 py-5 backdrop-blur">
-        <div className="mx-auto flex max-w-[1600px] flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
-          <div className="space-y-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[color:var(--accent)]">
-              Photo Route Mapper
-            </p>
-            <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
-              Turn scattered travel photos into organized trip routes.
-            </h1>
-            <p className="max-w-2xl text-sm leading-6 text-slate-600 md:text-base">
-              Create separate trips, upload photos into each one, fix metadata gaps, and review each route on its own map and timeline.
-            </p>
+    <main className="min-h-screen px-3 py-3 md:px-5 md:py-5">
+      <div className="mx-auto flex w-full max-w-[1480px] flex-col gap-4">
+        <section className="shell-panel rounded-[1.75rem] px-4 py-5 md:px-6 md:py-6 lg:px-8">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="space-y-2">
+              <p className="eyebrow">Photo Route Mapper</p>
+              <h1 data-display="true" className="max-w-3xl text-[2.4rem] leading-[0.95] text-slate-900 md:text-6xl">
+                Minimal trip mapping for travel photos.
+              </h1>
+              <p className="max-w-2xl text-sm leading-6 text-[color:var(--muted)] md:text-base">
+                Upload photos, correct missing metadata, and browse each trip on a focused map and timeline.
+              </p>
+            </div>
+            <UploadPanel
+              isBusy={isPending}
+              trips={trips}
+              selectedTripId={selectedTripId}
+              onSelectedTripChange={setSelectedTripId}
+              onUploadComplete={handleUploadReady}
+            />
           </div>
-          <UploadPanel
-            isBusy={isPending}
+        </section>
+
+        <div className="flex flex-col gap-4 lg:grid lg:grid-cols-[22rem_minmax(0,1fr)] lg:items-start">
+          <TimelineSidebar
             trips={trips}
+            tripPhotoCounts={tripPhotoCounts}
+            totalPhotoCount={sortedPhotos.length}
             selectedTripId={selectedTripId}
-            onSelectedTripChange={setSelectedTripId}
-            onUploadComplete={handleUploadReady}
+            onSelectTrip={setSelectedTripId}
+            onDeleteTrip={handleDeleteTrip}
+            photos={filteredPhotos}
+            selectedPhotoId={selectedPhotoId}
+            onSelectPhoto={setSelectedPhotoId}
+          />
+          <MapView
+            photos={filteredPhotos}
+            selectedPhotoId={selectedPhotoId}
+            onSelectPhoto={setSelectedPhotoId}
+            onSaveMemo={handleMemoSave}
           />
         </div>
-      </div>
-
-      <div className="mx-auto flex w-full max-w-[1600px] flex-1 flex-col gap-4 p-4 lg:flex-row lg:p-6">
-        <TimelineSidebar
-          trips={trips}
-          tripPhotoCounts={tripPhotoCounts}
-          totalPhotoCount={sortedPhotos.length}
-          selectedTripId={selectedTripId}
-          onSelectTrip={setSelectedTripId}
-          onDeleteTrip={handleDeleteTrip}
-          photos={filteredPhotos}
-          selectedPhotoId={selectedPhotoId}
-          onSelectPhoto={setSelectedPhotoId}
-        />
-        <MapView
-          photos={filteredPhotos}
-          selectedPhotoId={selectedPhotoId}
-          onSelectPhoto={setSelectedPhotoId}
-          onSaveMemo={handleMemoSave}
-        />
       </div>
     </main>
   );

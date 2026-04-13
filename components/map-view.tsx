@@ -144,9 +144,9 @@ export function MapView({ photos, selectedPhotoId, onSelectPhoto, onSaveMemo }: 
     if (coordinates.length > 1) {
       routeLineRef.current = leaflet
         .polyline(coordinates, {
-          color: "#b65a2a",
+          color: "#c46234",
           weight: 4,
-          opacity: 0.85,
+          opacity: 0.82,
         })
         .addTo(map);
     }
@@ -155,7 +155,7 @@ export function MapView({ photos, selectedPhotoId, onSelectPhoto, onSaveMemo }: 
       map.setView(coordinates[0], 6);
     } else if (coordinates.length > 1) {
       map.fitBounds(coordinates, {
-        padding: [48, 48],
+        padding: [40, 40],
       });
     }
   }, [onSaveMemo, onSelectPhoto, photos]);
@@ -178,11 +178,9 @@ export function MapView({ photos, selectedPhotoId, onSelectPhoto, onSaveMemo }: 
 
   if (loadError) {
     return (
-      <section className="flex min-h-[60vh] flex-1 items-center justify-center rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--surface)] p-8 text-center shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+      <section className="shell-panel flex min-h-[52vh] flex-1 items-center justify-center rounded-[1.5rem] p-8 text-center">
         <div className="max-w-lg space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[color:var(--accent)]">
-            Map unavailable
-          </p>
+          <p className="eyebrow">Map unavailable</p>
           <h3 className="text-2xl font-semibold text-slate-900">English map could not be loaded.</h3>
           <p className="text-sm leading-6 text-slate-600">{loadError}</p>
         </div>
@@ -191,14 +189,14 @@ export function MapView({ photos, selectedPhotoId, onSelectPhoto, onSaveMemo }: 
   }
 
   return (
-    <section className="relative z-0 min-h-[60vh] flex-1 overflow-hidden rounded-[2rem] border border-[color:var(--border)] bg-slate-200 shadow-[0_20px_60px_rgba(15,23,42,0.08)] isolate">
+    <section className="shell-panel relative z-0 min-h-[52vh] overflow-hidden rounded-[1.5rem] isolate md:min-h-[60vh]">
       <div ref={containerRef} className="absolute inset-0" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-between p-4">
-        <div className="rounded-full bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-700 backdrop-blur">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex justify-between p-3 md:p-4">
+        <div className="rounded-full border border-white/50 bg-white/72 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700 backdrop-blur md:px-4 md:py-2 md:text-xs md:tracking-[0.22em]">
           English map
         </div>
-        <div className="rounded-full bg-white/85 px-4 py-2 text-xs font-semibold text-slate-700 backdrop-blur">
-          {photos.length > 1 ? `${photos.length - 1} route segments` : `${photos.length} stop`}
+        <div className="rounded-full border border-white/50 bg-white/72 px-3 py-1.5 text-[11px] font-semibold text-slate-700 backdrop-blur md:px-4 md:py-2 md:text-xs">
+          {photos.length > 1 ? `${photos.length - 1} segments` : `${photos.length} stop`}
         </div>
       </div>
     </section>
